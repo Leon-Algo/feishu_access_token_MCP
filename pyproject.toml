@@ -1,0 +1,7 @@
+[project]
+name = "feishu-access-token-mcp"
+version = "0.1.0"
+requires-python = "==3.12.*"
+
+[tool.smithery]
+server = "src.main:create_server"
