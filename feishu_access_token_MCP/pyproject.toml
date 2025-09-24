@@ -1,0 +1,28 @@
+[build-system]
+requires = ["uv_build>=0.8.15,<0.9.0"]
+build-backend = "uv_build"
+
+[project]
+name = "feishu-access-token-mcp"
+version = "0.1.0"
+description = "An MCP server for managing and refreshing Feishu user access tokens"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "mcp>=1.14.0",
+    "smithery>=0.2.4",
+    "requests>=2.31.0",
+]
+
+[project.scripts]
+# Run the MCP server in development mode
+dev = "smithery.cli.dev:main"
+# Run server with interactive testing playground
+playground = "smithery.cli.playground:main"
+
+[tool.smithery]
+# Function that returns a patched FastMCP server
+server = "feishu_access_token_MCP.server:create_server"
