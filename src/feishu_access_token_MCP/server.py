@@ -8,14 +8,18 @@ from mcp.server.fastmcp import Context, FastMCP
 from pydantic import BaseModel, Field
 import time
 import requests
+import os
+from dotenv import load_dotenv
 
 from smithery.decorators import smithery
 
+# 加载环境变量
+load_dotenv()
 
 # Configuration schema for Feishu credentials
 class ConfigSchema(BaseModel):
-    app_id: str = Field(..., description="The App ID of your Feishu application.")
-    app_secret: str = Field(..., description="The App Secret of your Feishu application.")
+    app_id: str = Field(default=os.getenv("FEISHU_APP_ID", ""), description="The App ID of your Feishu application.")
+    app_secret: str = Field(default=os.getenv("FEISHU_APP_SECRET", ""), description="The App Secret of your Feishu application.")
 
 
 # Feishu API endpoints
