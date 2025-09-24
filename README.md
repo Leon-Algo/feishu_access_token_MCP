@@ -19,12 +19,13 @@ feishu_access_token_mcp/
 ├── .env                 # 环境变量配置文件
 ├── .gitignore
 ├── README.md
+├── deployment_test.py   # 部署前测试脚本
+├── import_test.py       # 模块导入测试脚本
 ├── pyproject.toml       # Smithery 配置文件
+├── simple_test.py       # 简单功能测试脚本
 ├── smithery.yaml
 ├── test_env.py          # 环境变量测试脚本
-├── import_test.py       # 模块导入测试脚本
-├── simple_test.py       # 简单功能测试脚本
-├── complete_test.py     # 完整功能测试脚本
+├── uv.lock              # 依赖锁定文件
 └── src/
     └── feishu_access_token_mcp/
         ├── __init__.py
@@ -65,7 +66,15 @@ feishu_access_token_mcp/
 
 ## 如何运行和测试
 
-### 1. 测试环境变量配置
+### 1. 部署前测试
+
+在部署到 Smithery 之前，建议运行部署前测试以确保所有配置正确：
+
+```bash
+python deployment_test.py
+```
+
+### 2. 测试环境变量配置
 
 使用以下命令测试环境变量配置和 Token 获取功能：
 
@@ -73,7 +82,7 @@ feishu_access_token_mcp/
 python test_env.py
 ```
 
-### 2. 测试模块导入
+### 3. 测试模块导入
 
 使用以下命令测试模块是否可以正确导入：
 
@@ -81,7 +90,7 @@ python test_env.py
 python import_test.py
 ```
 
-### 3. 测试核心功能
+### 4. 测试核心功能
 
 使用以下命令测试核心 Token 获取功能：
 
@@ -89,7 +98,7 @@ python import_test.py
 python simple_test.py
 ```
 
-### 4. 本地开发运行
+### 5. 本地开发运行
 
 使用以下命令启动本地开发服务器：
 
@@ -99,7 +108,7 @@ uv run dev
 
 服务器将在 `http://127.0.0.1:8081` 上运行。
 
-### 5. 在 Smithery Playground 中测试
+### 6. 在 Smithery Playground 中测试
 
 为了方便地测试 MCP 服务，您可以使用 Smithery Playground。它提供了一个图形界面来配置会话和调用工具。
 
@@ -158,3 +167,17 @@ uv run playground
    ```
 
 3. 在 [smithery.ai/new](https://smithery.ai/new) 部署您的服务器
+
+## 故障排除
+
+### 部署时出现 "Expected a Python module at: src/feishu_access_token_mcp/__init__.py" 错误
+
+这个问题通常是由于文件系统大小写敏感性差异导致的。确保：
+
+1. 目录名使用小写字母：`src/feishu_access_token_mcp/`（而不是 `src/feishu_access_token_MCP/`）
+2. [pyproject.toml](file://d:\AI\Agent_experiment\MCP\feishu_access_token_MCP\pyproject.toml) 中的服务器入口点配置正确：`server = "feishu_access_token_mcp.server:create_server"`
+3. 运行 `python deployment_test.py` 来验证配置是否正确
+
+如果问题仍然存在，请检查：
+- 确保 [__init__.py](file://d:\AI\Agent_experiment\MCP\feishu_access_token_MCP\src\feishu_access_token_mcp\__init__.py) 文件存在于正确的位置
+- 确保 [uv.lock](file://d:\AI\Agent_experiment\MCP\feishu_access_token_MCP\uv.lock) 文件是最新的（运行 `uv lock` 重新生成）

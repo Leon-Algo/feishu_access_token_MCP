@@ -27,3 +27,9 @@ playground = "smithery.cli.playground:main"
 [tool.smithery]
 # Function that returns a patched FastMCP server
 server = "feishu_access_token_mcp.server:create_server"
+
+# Explicitly define the package structure
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["feishu_access_token_mcp*"]
+namespaces = false
