@@ -22,8 +22,11 @@ feishu_access_token_mcp/
 ├── pyproject.toml       # Smithery 配置文件
 ├── smithery.yaml
 ├── test_env.py          # 环境变量测试脚本
+├── import_test.py       # 模块导入测试脚本
+├── simple_test.py       # 简单功能测试脚本
+├── complete_test.py     # 完整功能测试脚本
 └── src/
-    └── feishu_access_token_MCP/
+    └── feishu_access_token_mcp/
         ├── __init__.py
         └── server.py    # MCP 服务器定义和核心逻辑
 ```
@@ -70,7 +73,23 @@ feishu_access_token_mcp/
 python test_env.py
 ```
 
-### 2. 本地开发运行
+### 2. 测试模块导入
+
+使用以下命令测试模块是否可以正确导入：
+
+```bash
+python import_test.py
+```
+
+### 3. 测试核心功能
+
+使用以下命令测试核心 Token 获取功能：
+
+```bash
+python simple_test.py
+```
+
+### 4. 本地开发运行
 
 使用以下命令启动本地开发服务器：
 
@@ -80,7 +99,7 @@ uv run dev
 
 服务器将在 `http://127.0.0.1:8081` 上运行。
 
-### 3. 在 Smithery Playground 中测试
+### 5. 在 Smithery Playground 中测试
 
 为了方便地测试 MCP 服务，您可以使用 Smithery Playground。它提供了一个图形界面来配置会话和调用工具。
 

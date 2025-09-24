@@ -5,7 +5,7 @@
 import os
 import json
 from dotenv import load_dotenv
-from src.feishu_access_token_MCP.server import create_server
+from src.feishu_access_token_mcp.server import create_server
 
 # 加载环境变量
 load_dotenv()

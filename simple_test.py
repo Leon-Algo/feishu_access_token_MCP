@@ -4,7 +4,7 @@
 
 import os
 from dotenv import load_dotenv
-from src.feishu_access_token_MCP.server import create_server
+from src.feishu_access_token_mcp.server import create_server
 
 # 加载环境变量
 load_dotenv()
@@ -23,7 +23,7 @@ def test_token_manager():
     
     # 注意：这里我们需要模拟一个完整的 MCP 上下文来测试
     # 由于直接测试比较复杂，我们直接测试 TokenManager
-    from src.feishu_access_token_MCP.server import FeishuTokenManager
+    from src.feishu_access_token_mcp.server import FeishuTokenManager
     
     # 创建 TokenManager 实例
     token_manager = FeishuTokenManager(app_id, app_secret)
